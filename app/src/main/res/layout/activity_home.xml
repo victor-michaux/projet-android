@@ -12,7 +12,9 @@
         android:gravity="center_vertical|center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
 
         <Button
             android:id="@+id/newGameButton"
@@ -72,6 +74,7 @@
             android:textSize="24sp"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="354dp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
