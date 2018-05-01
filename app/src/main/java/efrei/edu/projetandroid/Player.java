@@ -5,12 +5,13 @@ package efrei.edu.projetandroid;
  */
 
 class Player {
+    private static int NB_PLAYER = 0;
     private int id;
     private String nom;
     private String prenom;
 
-    public Player(int id, String nom, String prenom) {
-        this.id = id;
+    public Player(String nom, String prenom) {
+        this.id = ++NB_PLAYER;
         this.nom = nom;
         this.prenom = prenom;
     }

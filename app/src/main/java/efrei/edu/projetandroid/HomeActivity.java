@@ -17,7 +17,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
-    public void lunchGameHandler(View view){
+    public void newGameOnclick(View view){
+        Intent newGameIntent = new Intent(this, NewGameActivity.class);
+        startActivity(newGameIntent);
     }
 
     public void onOldGamesClick(View view)
