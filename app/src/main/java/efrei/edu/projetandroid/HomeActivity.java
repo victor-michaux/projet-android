@@ -20,4 +20,11 @@ public class HomeActivity extends AppCompatActivity {
         Intent oldGameIntent = new Intent(this, OldGameActivity.class);
         startActivity(oldGameIntent);
     }
+
+    // Faudra charger les données du game en cours dans l'activité
+    public void onGameResumeClick(View view)
+    {
+        Intent gameResumeIntent = new Intent(this, BallThrowActivity.class);
+        startActivity(gameResumeIntent);
+    }
 }
