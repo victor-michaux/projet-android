@@ -10,6 +10,8 @@ public class Round {
 
     private boolean finished;
 
+    public Round(){}
+
     public Round(final List<Player> players) {
         this.players = players;
         this.playerRoundDictionary = this.initPlayerRoundMap();

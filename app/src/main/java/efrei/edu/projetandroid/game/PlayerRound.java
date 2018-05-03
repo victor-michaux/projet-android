@@ -80,4 +80,24 @@ public class PlayerRound {
     {
         return this.firstThrow != null && !this.firstThrow.hasStrike();
     }
+
+    public PlayerThrow getFirstThrow() {
+        return firstThrow;
+    }
+
+    public void setFirstThrow(PlayerThrow firstThrow) {
+        this.firstThrow = firstThrow;
+    }
+
+    public PlayerThrow getSecondThrow() {
+        return secondThrow;
+    }
+
+    public void setSecondThrow(PlayerThrow secondThrow) {
+        this.secondThrow = secondThrow;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
 }

@@ -35,4 +35,16 @@ public class PlayerThrow {
 
         return true;
     }
+
+    public ArrayList<Integer> getDroppedBowlingPins() {
+        return droppedBowlingPins;
+    }
+
+    public void setDroppedBowlingPins(ArrayList<Integer> droppedBowlingPins) {
+        this.droppedBowlingPins = droppedBowlingPins;
+    }
+
+    public boolean isGutter() {
+        return gutter;
+    }
 }

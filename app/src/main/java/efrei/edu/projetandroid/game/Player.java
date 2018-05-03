@@ -1,13 +1,9 @@
 package efrei.edu.projetandroid.game;
 
-import com.google.firebase.database.IgnoreExtraProperties;
-
 /**
  * Created by Kitchen-PC on 29/04/2018.
  */
-@IgnoreExtraProperties
 public class Player {
-    private String id;
     private String nom;
     private String prenom;
 
@@ -36,12 +32,4 @@ public class Player {
         this.prenom = prenom;
     }
 
-    public String getId() {
-
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
