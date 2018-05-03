@@ -1,7 +1,6 @@
 package efrei.edu.projetandroid;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,6 +32,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import efrei.edu.projetandroid.game.Player;
 
 public class NewGameActivity extends AppCompatActivity {
 

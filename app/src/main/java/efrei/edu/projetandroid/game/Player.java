@@ -1,4 +1,4 @@
-package efrei.edu.projetandroid;
+package efrei.edu.projetandroid.game;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -6,16 +6,16 @@ import com.google.firebase.database.IgnoreExtraProperties;
  * Created by Kitchen-PC on 29/04/2018.
  */
 @IgnoreExtraProperties
-class Player {
+public class Player {
     private String id;
     private String nom;
     private String prenom;
 
-    Player(){
+    public Player(){
 
     }
 
-    Player(String nom, String prenom) {
+    public Player(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }
