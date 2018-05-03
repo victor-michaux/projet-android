@@ -61,6 +61,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:elevation="5dp"
             android:fontFamily="@font/exo"
+            android:onClick="onOldGamesClick"
             android:paddingBottom="15dp"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
