@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="efrei.edu.projetandroid">
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,8 +22,13 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+        <activity
+            android:name=".NewGameActivity"
+            android:label="@string/title_activity_new_game"
+            android:theme="@style/AppTheme"/>
+
         <activity android:name=".OldGameActivity" />
-        <activity android:name=".BallThrowActivity"></activity>
+        <activity android:name=".BallThrowActivity"/>
     </application>
 
 </manifest>
