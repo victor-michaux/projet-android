@@ -1,17 +1,21 @@
 package efrei.edu.projetandroid;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * Created by Kitchen-PC on 29/04/2018.
  */
-
+@IgnoreExtraProperties
 class Player {
-    private static int NB_PLAYER = 0;
-    private int id;
+    private String id;
     private String nom;
     private String prenom;
 
-    public Player(String nom, String prenom) {
-        this.id = ++NB_PLAYER;
+    Player(){
+
+    }
+
+    Player(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }
@@ -32,12 +36,12 @@ class Player {
         this.prenom = prenom;
     }
 
-    public int getId() {
+    public String getId() {
 
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
