@@ -46,7 +46,7 @@ public class Round {
         return this.playerRoundDictionary.get(currentPlayer);
     }
 
-    private Player getCurrentPlayer()
+    public Player getCurrentPlayer()
     {
         for(Player player : this.players) {
             if(!this.playerRoundDictionary.get(player).isFinished()) {
@@ -55,5 +55,9 @@ public class Round {
         }
 
         return null;
+    }
+
+    public boolean isFinished() {
+        return this.finished;
     }
 }

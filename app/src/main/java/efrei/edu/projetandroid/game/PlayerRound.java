@@ -18,6 +18,7 @@ public class PlayerRound {
     public PlayerRound(final PlayerThrow firstThrow)
     {
         this.firstThrow = firstThrow;
+        this.secondThrow = null;
         this.finished = firstThrow.hasStrike();
     }
 
@@ -67,8 +68,10 @@ public class PlayerRound {
     private PlayerThrow getCurrentPlayerThrow()
     {
         if(this.firstThrow == null) {
+            this.firstThrow = new PlayerThrow();
             return this.firstThrow;
         } else {
+            this.secondThrow = new PlayerThrow();
             return this.secondThrow;
         }
     }

@@ -8,7 +8,6 @@ public class Game {
 
     private List<Player> players;
     private List<Round> rounds;
-    private Round currentRound = null;
 
     // From Start Constructor
     public Game(final List<Player> players) {
@@ -16,10 +15,9 @@ public class Game {
         this.rounds = this.generateRoundList();
     }
 
-    public void runNewgame() {
-        for (Round round : this.rounds) {
-            //Launch Round
-        }
+    public Game(final List<Player> players, final ArrayList<Round> rounds) {
+        this.players = players;
+        this.rounds = rounds;
     }
 
     private ArrayList<Round> generateRoundList()
@@ -31,12 +29,20 @@ public class Game {
             roundArrayList.add(new Round(this.players));
         }
 
-        this.currentRound = roundArrayList.get(0);
-
         return roundArrayList;
     }
 
     public Round getCurrentRound() {
-        return this.currentRound;
+        for (Round round : this.rounds) {
+            if(!round.isFinished()) {
+                return round;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean isFinished() {
+        return this.getCurrentRound() == null;
     }
 }

@@ -25,17 +25,13 @@ public class BallThrowActivity extends AppCompatActivity {
 
         Game game = new Game(players);
 
-        Round currentRound = game.getCurrentRound();
-        PlayerRound currentPlayerRound = currentRound.getCurrentPlayerRound();
+        // Check pour savoir si on affiche le fragment de saisie
+        if(!game.isFinished()) {
+            Round currentRound = game.getCurrentRound();
+            PlayerRound currentPlayerRound = currentRound.getCurrentPlayerRound();
 
-        //Set les donnée renseigné par le joueur
-        // Affichage du fragment avec les infos disponnible
-
-        boolean isPlayerRoundFinished = currentPlayerRound.play(BallThrowType.NO_PIN_TOUCHED, null);
-
-        if(isPlayerRoundFinished) {
-            currentRound.nextPlayer();
+            // Première data bidon
+            currentPlayerRound.play(BallThrowType.GUTTER, null);
         }
-
     }
 }
