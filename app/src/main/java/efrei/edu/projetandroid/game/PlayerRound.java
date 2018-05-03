@@ -42,6 +42,11 @@ public class PlayerRound {
         return this.finished;
     }
 
+    public boolean isFinished()
+    {
+        return this.finished;
+    }
+
     private void writeThrowResult(BallThrowType throwType, ArrayList<Integer> droppedBowlingPins)
     {
         PlayerThrow currentPlayerThrow = this.getCurrentPlayerThrow();

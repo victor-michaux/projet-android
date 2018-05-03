@@ -7,20 +7,19 @@ import java.util.Map;
 public class Round {
     private List<Player> players;
     private Map<Player, PlayerRound> playerRoundDictionary;
-    private PlayerRound currentPlayerRound = null;
+
+    private boolean finished;
 
     public Round(final List<Player> players) {
         this.players = players;
         this.playerRoundDictionary = this.initPlayerRoundMap();
-
+        this.finished = false;
     }
 
-    public void runNewRound()
-    {
-        for(Player player : this.players)
-        {
-
-        }
+    public Round(final List<Player> players, final Map<Player, PlayerRound> playerRoundDictionary) {
+        this.players = players;
+        this.playerRoundDictionary = playerRoundDictionary;
+        this.finished = this.getCurrentPlayer() == null;
     }
 
     private Map<Player, PlayerRound>initPlayerRoundMap()
@@ -29,33 +28,32 @@ public class Round {
 
         for (Player player : players)
         {
-            playerRoundMap.put(player, null);
+            playerRoundMap.put(player, new PlayerRound());
         }
 
         return playerRoundMap;
     }
 
     public PlayerRound getCurrentPlayerRound() {
-        for(Player player : this.players) {
-            if(this.playerRoundDictionary.get(player) == null) {
-                return
-            }
+        Player currentPlayer = this.getCurrentPlayer();
+
+        // Si currentPlayer == null alors tous les joueurs on joué le tour
+        if(currentPlayer == null) {
+            this.finished = true;
+            return null;
         }
+
+        return this.playerRoundDictionary.get(currentPlayer);
     }
 
     private Player getCurrentPlayer()
     {
         for(Player player : this.players) {
-            if(this.playerRoundDictionary.get(player) == null) {
+            if(!this.playerRoundDictionary.get(player).isFinished()) {
                 return player;
             }
         }
 
         return null;
-    }
-
-    public void nextPlayer() {
-        int playerCount = this.players.size();
-        this.playerRoundDictionary.get(this.currentPlayerRound)
     }
 }
