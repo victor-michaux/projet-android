@@ -1,14 +1,17 @@
 package efrei.edu.projetandroid.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable{
     static final int DEFAULT_ROUND_NUMBER = 3;
 
     private List<Player> players;
     private List<Round> rounds;
     private String uid;
+    private String address;
+    private String date;
 
     // From Start Constructor
     public Game(final List<Player> players) {
@@ -71,5 +74,21 @@ public class Game {
 
     public void setUid(String uid){
         this.uid = uid;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

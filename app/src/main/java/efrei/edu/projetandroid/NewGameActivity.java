@@ -29,7 +29,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -152,8 +154,7 @@ public class NewGameActivity extends AppCompatActivity {
             toast.show();
         } else {
             game = new Game(playerList);
-            game.setUid(mDatabase.child("games").push().getKey());
-            mDatabase.child("games").child(game.getUid()).setValue(game);
+
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
@@ -175,13 +176,21 @@ public class NewGameActivity extends AppCompatActivity {
                                 }
 
                                 address = addresses.get(0).getAddressLine(0);
+                                game.setAddress(address);
+                                game.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                                game.setUid(mDatabase.child("games").push().getKey());
+                                mDatabase.child("games").child(game.getUid()).setValue(game);
+                                lunchBallThrowActivity();
                             }
                         }
                     });
-            Intent gameIntent = new Intent(this, BallThrowActivity.class);
-            gameIntent.putExtra("GameID", game.getUid());
-            startActivity(gameIntent);
         }
+    }
+
+    private void lunchBallThrowActivity(){
+        Intent gameIntent = new Intent(this, BallThrowActivity.class);
+        gameIntent.putExtra("Game", game);
+        startActivity(gameIntent);
     }
 
 }

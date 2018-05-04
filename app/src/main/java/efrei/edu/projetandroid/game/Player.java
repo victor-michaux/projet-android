@@ -1,9 +1,11 @@
 package efrei.edu.projetandroid.game;
 
+import java.io.Serializable;
+
 /**
  * Created by Kitchen-PC on 29/04/2018.
  */
-public class Player {
+public class Player implements Serializable {
     private String nom;
     private String prenom;
 

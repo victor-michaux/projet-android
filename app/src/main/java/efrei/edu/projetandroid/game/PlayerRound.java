@@ -1,8 +1,9 @@
 package efrei.edu.projetandroid.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PlayerRound {
+public class PlayerRound implements Serializable{
     private PlayerThrow firstThrow;
     private PlayerThrow secondThrow;
 

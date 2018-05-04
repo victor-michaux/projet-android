@@ -1,10 +1,11 @@
 package efrei.edu.projetandroid.game;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Round {
+public class Round implements Serializable{
     private List<Player> players;
     private Map<Player, PlayerRound> playerRoundDictionary;
 
