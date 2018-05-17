@@ -1,7 +1,6 @@
 package efrei.edu.projetandroid;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,12 +29,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import efrei.edu.projetandroid.game.Game;
+import efrei.edu.projetandroid.game.Player;
+
 public class NewGameActivity extends AppCompatActivity {
 
+    private Game game;
     private List<Player> playerList;
     private ArrayList<String> listItems = new ArrayList<>();
     private ArrayAdapter<String> adapter;
@@ -145,25 +150,12 @@ public class NewGameActivity extends AppCompatActivity {
             Context context = getApplicationContext();
             CharSequence text = "No player selected";
             int duration = Toast.LENGTH_SHORT;
-
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         } else {
-            Intent gameIntent = new Intent(this, BallThrowActivity.class);
-            //List d'id pour retrouver les joueurs dans la BDD sur l'autre activité
-            int[] playerId = new int[playerList.size()];
-            for (int i = 0; i < playerList.size(); i++) {
-                writeNewPlayer(playerList.get(i).getNom(), playerList.get(i).getPrenom());
-            }
+            game = new Game(playerList);
 
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
                 return;
             }
             mFusedLocationClient.getLastLocation()
@@ -184,18 +176,21 @@ public class NewGameActivity extends AppCompatActivity {
                                 }
 
                                 address = addresses.get(0).getAddressLine(0);
+                                game.setAddress(address);
+                                game.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                                game.setUid(mDatabase.child("games").push().getKey());
+                                mDatabase.child("games").child(game.getUid()).setValue(game);
+                                lunchBallThrowActivity();
                             }
                         }
                     });
-            gameIntent.putExtra("PlayerIdList", playerId);
-            startActivity(gameIntent);
         }
     }
 
-    private void writeNewPlayer(String nom, String prenom) {
-        Player player = new Player(nom, prenom);
-        player.setId(mDatabase.child("players").push().getKey());
-        mDatabase.child("players").child(player.getId()).setValue(player);
+    private void lunchBallThrowActivity(){
+        Intent gameIntent = new Intent(this, BallThrowActivity.class);
+        gameIntent.putExtra("Game", game);
+        startActivity(gameIntent);
     }
 
 }

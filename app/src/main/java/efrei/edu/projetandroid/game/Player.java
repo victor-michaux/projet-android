@@ -1,21 +1,19 @@
-package efrei.edu.projetandroid;
+package efrei.edu.projetandroid.game;
 
-import com.google.firebase.database.IgnoreExtraProperties;
+import java.io.Serializable;
 
 /**
  * Created by Kitchen-PC on 29/04/2018.
  */
-@IgnoreExtraProperties
-class Player {
-    private String id;
+public class Player implements Serializable {
     private String nom;
     private String prenom;
 
-    Player(){
+    public Player(){
 
     }
 
-    Player(String nom, String prenom) {
+    public Player(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }
@@ -36,12 +34,4 @@ class Player {
         this.prenom = prenom;
     }
 
-    public String getId() {
-
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
