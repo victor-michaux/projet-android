@@ -88,6 +88,11 @@ public class BallThrowActivity extends AppCompatActivity implements PlayerThrowF
         Round currentRound = game.getCurrentRound();
         PlayerRound currentPlayerRound = currentRound.getCurrentPlayerRound();
 
+        if(currentPlayerRound == null) {
+            currentRound = game.getCurrentRound();
+            currentPlayerRound = currentRound.getCurrentPlayerRound();
+        }
+
         PlayerThrowFragment playerThrowFragment = PlayerThrowFragment.newInstance(currentRound, currentPlayerRound);
         FragmentTransaction fragmentTransaction = this.fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.playerThrowFragmentContainer, playerThrowFragment);
