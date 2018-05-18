@@ -1,5 +1,6 @@
 package efrei.edu.projetandroid;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,7 @@ import efrei.edu.projetandroid.game.Game;
 import efrei.edu.projetandroid.game.Player;
 import efrei.edu.projetandroid.game.PlayerRound;
 import efrei.edu.projetandroid.game.Round;
+import efrei.edu.projetandroid.view_model.GameViewModel;
 
 public class BallThrowActivity extends AppCompatActivity implements PlayerThrowFragment.OnFragmentInteractionListener {
 
@@ -32,6 +34,8 @@ public class BallThrowActivity extends AppCompatActivity implements PlayerThrowF
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    private GameViewModel gameViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +43,12 @@ public class BallThrowActivity extends AppCompatActivity implements PlayerThrowF
         setContentView(R.layout.activity_ball_throw);
 
         Intent intent = getIntent();
-        Game game = (Game) intent.getSerializableExtra("Game");
+        gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        //Game game = (Game) intent.getSerializableExtra("Game");
 
-        mGameReference = FirebaseDatabase.getInstance().getReference().child("games").child(game.getUid());
+        //mGameReference = FirebaseDatabase.getInstance().getReference().child("games").child(game.getUid());
 
-        mGameReference.addValueEventListener(new ValueEventListener() {
+        /*mGameReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -53,7 +58,7 @@ public class BallThrowActivity extends AppCompatActivity implements PlayerThrowF
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         //mGamesRef.addListenerForSingleValueEvent(gameListener);
 
@@ -64,6 +69,8 @@ public class BallThrowActivity extends AppCompatActivity implements PlayerThrowF
         players.add(new Player("Michaux", "Victor"));
         players.add(new Player("Boukari", "Bryan"));
         this.game = new Game(players);
+
+        gameViewModel.insert(game);
 
         // Check pour savoir si on affiche le fragment de saisie
         if(!game.isFinished()) {
@@ -78,7 +85,7 @@ public class BallThrowActivity extends AppCompatActivity implements PlayerThrowF
             // Première data bidon
             currentPlayerRound.play(BallThrowType.GUTTER, null);
 
-            mGameReference.setValue(game);
+            //mGameReference.setValue(game);
         }
     }
 
