@@ -1,16 +1,31 @@
 package efrei.edu.projetandroid.game;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "games")
 public class Game implements Serializable{
     static final int DEFAULT_ROUND_NUMBER = 3;
 
+    @PrimaryKey
+    private int id;
+
+    @Ignore
     private List<Player> players;
+
+    @Ignore
     private List<Round> rounds;
+
     private String uid;
+
     private String address;
+
     private String date;
 
     // From Start Constructor
@@ -90,5 +105,14 @@ public class Game implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
     }
 }
